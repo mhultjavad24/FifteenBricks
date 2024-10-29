@@ -63,10 +63,12 @@ public class Main extends JFrame {
         int verticalRow = index % 4;
         int horizontalRow = index - (index % 4);
         int zeroIndex = -1;
+        boolean vertical = false;
         for (int i = verticalRow; i < 16; i += 4){
             if (i == index) continue;
             if (buttons.get(i).getText().equals("0")){
                 zeroIndex = i;
+                vertical = true;
                 break;
             }
         }
@@ -74,40 +76,46 @@ public class Main extends JFrame {
             if (i == index) continue;
             if (buttons.get(i).getText().equals("0")){
                 zeroIndex = i;
+                vertical = false;
                 break;
             }
         }
         if (zeroIndex != -1){
-            moveBricks(index, zeroIndex);
+            moveBricks(index, zeroIndex, vertical);
         }
     }
 
-    void moveBricks(int firstBrick, int targetBrick){
+    void moveBricks(int choosenBrick, int targetBrick, boolean vertical){
         int howManyJumps = -1;
-        boolean rightOrDown = true;
-
-        // Horizontal
-        if (firstBrick - (firstBrick % 4) > targetBrick || firstBrick - (firstBrick % 4) + 3 < targetBrick) {
-            howManyJumps = (firstBrick - targetBrick) % 4;
-            if (howManyJumps > 0) {
-                rightOrDown = false;
+        if (vertical){
+            howManyJumps = (targetBrick - choosenBrick) / 4;
+            if (howManyJumps > 0){
+                for (int i = 0; i < howManyJumps; i++){
+                    singleMove(targetBrick - ((i + 1) * 4),targetBrick - (i * 4));
+                }
+            } else {
                 howManyJumps *= -1;
-            }
-            for (int i = 0; i < howManyJumps; i++) {
-                if (rightOrDown) {
-
+                for (int i = 0; i < howManyJumps; i++){
+                    singleMove(targetBrick + ((i + 1) * 4),targetBrick + (i * 4));
                 }
             }
-        } else { // Vertical
-            howManyJumps = firstBrick - targetBrick;
+        } else {
+            howManyJumps = targetBrick - choosenBrick;
             if (howManyJumps > 0){
-                rightOrDown = false;
+                for (int i = 0; i < howManyJumps; i++){
+                    singleMove(targetBrick - i - 1 , targetBrick - i);
+                }
+            } else {
                 howManyJumps *= -1;
+                for (int i = 0; i < howManyJumps; i++){
+                    singleMove(targetBrick + i + 1, targetBrick + i);
+                    System.out.println(i + " - " + howManyJumps + " - " + targetBrick);
+                }
             }
-
         }
-        singleMove(firstBrick, targetBrick);
-        checkVictory();
+
+
+        //        checkVictory();
     }
 
     void singleMove(int firstBrick, int targetBrick){
