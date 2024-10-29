@@ -26,6 +26,7 @@ public class Main extends JFrame {
     JLabel fourteen = new JLabel("14");
     JLabel fifteen = new JLabel("15");
 
+
     Main(){
         gamePanel.add(one);
         gamePanel.add(two);
