@@ -40,6 +40,15 @@ public class Main extends JFrame {
             System.out.println(buttonString);
             if (firstRender) {
                 JButton button = new JButton(buttonString);
+                button.addActionListener(l -> {
+                    System.out.println("Clicked");
+                    checkValidMove(buttons.indexOf(button));
+                });
+                if (buttonString.equals("0")){
+                    button.setOpaque(true);
+                    button.setContentAreaFilled(false);
+                    button.setBorderPainted(false);
+                }
                 gamePanel.add(button);
                 buttons.add(button);
             } else {
@@ -48,6 +57,40 @@ public class Main extends JFrame {
             i++;
         }
         firstRender = false;
+    }
+
+    void checkValidMove(int index){
+        int verticalRow = index % 4;
+        int horizontalRow = index - (index % 4);
+        int zeroIndex = -1;
+        for (int i = verticalRow; i < 16; i += 4){
+            if (i == index) continue;
+            if (buttons.get(i).getText().equals("0")){
+                zeroIndex = i;
+                break;
+            }
+        }
+        for (int i = horizontalRow; i < horizontalRow + 4; i++){
+            if (i == index) continue;
+            if (buttons.get(i).getText().equals("0")){
+                zeroIndex = i;
+                break;
+            }
+        }
+        if (zeroIndex != -1){
+            moveBricks(index, zeroIndex);
+        }
+    }
+
+    void moveBricks(int firstBrick, int targetBrick){
+        singleMove(firstBrick, targetBrick);
+    }
+
+    void singleMove(int firstBrick, int targetBrick){
+        String firstBrickText = buttons.get(firstBrick).getText();
+        String targetBrickText = buttons.get(targetBrick).getText();
+        buttons.get(firstBrick).setText(targetBrickText);
+        buttons.get(targetBrick).setText(firstBrickText);
     }
 
     void newGame() {
