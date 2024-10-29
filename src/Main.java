@@ -83,7 +83,31 @@ public class Main extends JFrame {
     }
 
     void moveBricks(int firstBrick, int targetBrick){
+        int howManyJumps = -1;
+        boolean rightOrDown = true;
+
+        // Horizontal
+        if (firstBrick - (firstBrick % 4) > targetBrick || firstBrick - (firstBrick % 4) + 3 < targetBrick) {
+            howManyJumps = (firstBrick - targetBrick) % 4;
+            if (howManyJumps > 0) {
+                rightOrDown = false;
+                howManyJumps *= -1;
+            }
+            for (int i = 0; i < howManyJumps; i++) {
+                if (rightOrDown) {
+
+                }
+            }
+        } else { // Vertical
+            howManyJumps = firstBrick - targetBrick;
+            if (howManyJumps > 0){
+                rightOrDown = false;
+                howManyJumps *= -1;
+            }
+
+        }
         singleMove(firstBrick, targetBrick);
+        checkVictory();
     }
 
     void singleMove(int firstBrick, int targetBrick){
