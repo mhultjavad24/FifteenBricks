@@ -10,9 +10,11 @@ public class Main extends JFrame {
     JPanel  buttonPanel        = new JPanel(new GridLayout(1,1));
     JPanel  gamePanel          = new JPanel(new GridLayout(4,4));
 
-    JButton newGameButton     = new JButton("New Game");
-    List<JButton> buttons = new ArrayList<>();
-    ArrayList<String> buttonStrings = new ArrayList();
+    JButton newGameButton      = new JButton("New Game");
+
+    List<JButton> buttons               = new ArrayList<>();
+    ArrayList<String> buttonStrings     = new ArrayList();
+
     boolean firstRender = true;
 
 
@@ -85,10 +87,10 @@ public class Main extends JFrame {
         }
     }
 
-    void moveBricks(int choosenBrick, int targetBrick, boolean vertical){
+    void moveBricks(int chosenBrick, int targetBrick, boolean vertical){
         int howManyJumps = -1;
         if (vertical){
-            howManyJumps = (targetBrick - choosenBrick) / 4;
+            howManyJumps = (targetBrick - chosenBrick) / 4;
             if (howManyJumps > 0){
                 for (int i = 0; i < howManyJumps; i++){
                     singleMove(targetBrick - ((i + 1) * 4),targetBrick - (i * 4));
@@ -100,7 +102,7 @@ public class Main extends JFrame {
                 }
             }
         } else {
-            howManyJumps = targetBrick - choosenBrick;
+            howManyJumps = targetBrick - chosenBrick;
             if (howManyJumps > 0){
                 for (int i = 0; i < howManyJumps; i++){
                     singleMove(targetBrick - i - 1 , targetBrick - i);
