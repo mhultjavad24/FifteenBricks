@@ -12,11 +12,10 @@ public class Main extends JFrame {
 
     JButton newGameButton      = new JButton("New Game");
 
-    List<JButton> buttons               = new ArrayList<>();
-    ArrayList<String> buttonStrings     = new ArrayList();
+    List<JButton>       buttons         = new ArrayList<>();
+    ArrayList<String>   buttonStrings   = new ArrayList();
 
     boolean firstRender = true;
-
 
     Main() {
         newGame();
@@ -28,7 +27,7 @@ public class Main extends JFrame {
 
         mainPanel.add(gamePanel, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-        this.add(mainPanel);
+        add(mainPanel);
         pack();
         setVisible(true);
         setSize(400,600);
@@ -111,13 +110,10 @@ public class Main extends JFrame {
                 howManyJumps *= -1;
                 for (int i = 0; i < howManyJumps; i++){
                     singleMove(targetBrick + i + 1, targetBrick + i);
-                    System.out.println(i + " - " + howManyJumps + " - " + targetBrick);
                 }
             }
         }
-
-
-        //        checkVictory();
+        checkVictory();
     }
 
     void singleMove(int firstBrick, int targetBrick){
