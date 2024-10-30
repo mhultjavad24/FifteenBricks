@@ -16,7 +16,7 @@ public class Main extends JFrame {
     ArrayList<String>   buttonStrings   = new ArrayList();
 
     boolean firstRender = true;
-
+    boolean hasWon = false;
     Main() {
         newGame();
         buttonPanel.add(newGameButton);
@@ -33,6 +33,19 @@ public class Main extends JFrame {
         setSize(400,600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    void showWinningMessage() {
+        JOptionPane.showMessageDialog(this, "You have won the game!", "Congratulations", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    boolean hasPlayerWon() {
+        for (int i = 0; i < 15; i++) {
+            if (!buttons.get(i).getText().equals(String.valueOf(i + 1))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     void render() {
@@ -113,7 +126,10 @@ public class Main extends JFrame {
                 }
             }
         }
-        checkVictory();
+        hasWon = hasPlayerWon();
+        if (hasWon) {
+            showWinningMessage();
+        }
     }
 
     void singleMove(int firstBrick, int targetBrick){
@@ -124,6 +140,7 @@ public class Main extends JFrame {
     }
 
     void newGame() {
+        hasWon = false;
         buttonStrings.clear();
         for (int i = 0; i <= 15; i++) {
             buttonStrings.add(String.valueOf(i));
