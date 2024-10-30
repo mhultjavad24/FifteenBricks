@@ -72,7 +72,7 @@ public class Main extends JFrame {
                     System.out.println("Clicked");
                     checkValidMove(buttons.indexOf(button));
                 });
-                if (buttonString.equals("0")){
+                if (buttonString.isEmpty()){
                     button.setOpaque(true);
                     button.setContentAreaFilled(false);
                     button.setBorderPainted(false);
@@ -94,7 +94,7 @@ public class Main extends JFrame {
         boolean vertical = false;
         for (int i = verticalRow; i < 16; i += 4){
             if (i == index) continue;
-            if (buttons.get(i).getText().equals("0")){
+            if (buttons.get(i).getText().isEmpty()){
                 zeroIndex = i;
                 vertical = true;
                 break;
@@ -102,7 +102,7 @@ public class Main extends JFrame {
         }
         for (int i = horizontalRow; i < horizontalRow + 4; i++){
             if (i == index) continue;
-            if (buttons.get(i).getText().equals("0")){
+            if (buttons.get(i).getText().isEmpty()){
                 zeroIndex = i;
                 vertical = false;
                 break;
@@ -110,6 +110,21 @@ public class Main extends JFrame {
         }
         if (zeroIndex != -1){
             moveBricks(index, zeroIndex, vertical);
+            repaintEmptySlot();
+        }
+    }
+
+    void repaintEmptySlot() {
+        for (int i = 0; i < 16; i++) {
+            if (buttons.get(i).getText().isEmpty()) {
+                buttons.get(i).setOpaque(true);
+                buttons.get(i).setContentAreaFilled(false);
+                buttons.get(i).setBorderPainted(false);
+            } else {
+                buttons.get(i).setOpaque(true);
+                buttons.get(i).setContentAreaFilled(true);
+                buttons.get(i).setBorderPainted(true);
+            }
         }
     }
 
@@ -157,10 +172,15 @@ public class Main extends JFrame {
         hasWon = false;
         buttonStrings.clear();
         for (int i = 0; i <= 15; i++) {
-            buttonStrings.add(String.valueOf(i));
+            if (i == 0) {
+                buttonStrings.add("");
+            } else {
+                buttonStrings.add(String.valueOf(i));
+            }
         }
         Collections.shuffle(buttonStrings);
         render();
+        repaintEmptySlot();
     }
 
     public static void main(String[] args) {
