@@ -15,6 +15,8 @@ public class Main extends JFrame {
     List<JButton>       buttons         = new ArrayList<>();
     ArrayList<String>   buttonStrings   = new ArrayList();
 
+    Font buttonFont = new Font("Arial", Font.BOLD, 42);
+
     boolean firstRender = true;
     boolean hasWon = false;
     Main() {
@@ -54,6 +56,7 @@ public class Main extends JFrame {
             System.out.println(buttonString);
             if (firstRender) {
                 JButton button = new JButton(buttonString);
+                button.setFont(buttonFont);
                 button.addActionListener(l -> {
                     System.out.println("Clicked");
                     checkValidMove(buttons.indexOf(button));
