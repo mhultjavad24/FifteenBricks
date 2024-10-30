@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,6 +15,11 @@ public class Main extends JFrame {
 
     List<JButton>       buttons         = new ArrayList<>();
     ArrayList<String>   buttonStrings   = new ArrayList();
+
+    Font buttonFont = new Font("Arial", Font.BOLD, 42);
+    Color buttonBackground = Color.WHITE;
+    Color textColor = Color.BLACK;
+    Color buttonBorder = Color.GRAY;
 
     boolean firstRender = true;
     boolean hasWon = false;
@@ -48,12 +54,21 @@ public class Main extends JFrame {
         return true;
     }
 
+    JButton styleButton(String buttonString){
+        JButton button = new JButton(buttonString);
+        button.setFont(buttonFont);
+        button.setBackground(buttonBackground);
+        button.setForeground(textColor);
+        button.setBorder(BorderFactory.createLineBorder(buttonBorder,1));
+        return button;
+    }
+
     void render() {
         int i = 0;
         for (String buttonString : buttonStrings) {
             System.out.println(buttonString);
             if (firstRender) {
-                JButton button = new JButton(buttonString);
+                JButton button = styleButton(buttonString);
                 button.addActionListener(l -> {
                     System.out.println("Clicked");
                     checkValidMove(buttons.indexOf(button));
