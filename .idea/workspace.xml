@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1077c4f8-a729-4791-a8f5-4cd0da05e761" name="Changes" comment="created a basic window for the game">
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    <list default="true" id="1077c4f8-a729-4791-a8f5-4cd0da05e761" name="Changes" comment="created some styling for the buttons">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="betterLookingUI" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -26,12 +29,12 @@
     &quot;assignee&quot;: &quot;mhultjavad24&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mhultjavad24/FifteenBricks.git",
-    "accountId": "28dda367-06e4-4f84-9305-9d4dbf3b9c00"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mhultjavad24/FifteenBricks.git&quot;,
+    &quot;accountId&quot;: &quot;28dda367-06e4-4f84-9305-9d4dbf3b9c00&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -41,21 +44,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "createMainWindow",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;betterLookingUI&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -75,6 +78,7 @@
       <workItem from="1730192451869" duration="70000" />
       <workItem from="1730192527819" duration="62000" />
       <workItem from="1730192658695" duration="887000" />
+      <workItem from="1730282850488" duration="2597000" />
     </task>
     <task id="LOCAL-00001" summary="created new branch for creating main window">
       <option name="closed" value="true" />
@@ -100,15 +104,89 @@
       <option name="project" value="LOCAL" />
       <updated>1730193487869</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added branch for brick movement">
+      <option name="closed" value="true" />
+      <created>1730198027823</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730198027823</updated>
+    </task>
+    <task id="LOCAL-00005" summary="working on the movement">
+      <option name="closed" value="true" />
+      <created>1730199133884</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730199133884</updated>
+    </task>
+    <task id="LOCAL-00006" summary="completed the movement">
+      <option name="closed" value="true" />
+      <created>1730213484352</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730213484352</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fixed a typo">
+      <option name="closed" value="true" />
+      <created>1730213571956</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730213571956</updated>
+    </task>
+    <task id="LOCAL-00008" summary="cleaned up a bit">
+      <option name="closed" value="true" />
+      <created>1730219230822</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730219230822</updated>
+    </task>
+    <task id="LOCAL-00009" summary="merged brickmovement into main">
+      <option name="closed" value="true" />
+      <created>1730283736550</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730283736550</updated>
+    </task>
+    <task id="LOCAL-00010" summary="created some styling for the buttons">
+      <option name="closed" value="true" />
+      <created>1730285183853</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1730285183853</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="created new branch for creating main window" />
     <MESSAGE value="created a basic window for the game" />
-    <option name="LAST_COMMIT_MESSAGE" value="created a basic window for the game" />
+    <MESSAGE value="added branch for brick movement" />
+    <MESSAGE value="working on the movement" />
+    <MESSAGE value="completed the movement" />
+    <MESSAGE value="fixed a typo" />
+    <MESSAGE value="cleaned up a bit" />
+    <MESSAGE value="merged brickmovement into main" />
+    <MESSAGE value="created some styling for the buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="created some styling for the buttons" />
   </component>
 </project>
