@@ -13,27 +13,24 @@ public class Main extends JFrame {
     JButton newGameButton      = new JButton("New Game");
 
     List<JButton>       buttons         = new ArrayList<>();
-    ArrayList<String>   buttonStrings   = new ArrayList();
+    ArrayList<String>   buttonStrings   = new ArrayList<>();
 
     Font buttonFont = new Font("Arial", Font.BOLD, 42);
     Color buttonBackground = Color.WHITE;
     Color textColor = Color.BLACK;
-    Color buttonBorder = Color.GRAY;
+    Color buttonBorder = Color.BLACK;
 
     boolean firstRender = true;
-    boolean hasWon = false;
     Main() {
         newGame();
         buttonPanel.add(newGameButton);
-        newGameButton.addActionListener(l -> {
-            System.out.println("Clicked");
-            newGame();
-        });
+        newGameButton.addActionListener(_ -> newGame());
 
         mainPanel.add(gamePanel, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         add(mainPanel);
         pack();
+        setTitle("Fifteen Bricks!");
         setVisible(true);
         setSize(400,600);
         setLocationRelativeTo(null);
@@ -59,6 +56,7 @@ public class Main extends JFrame {
         button.setBackground(buttonBackground);
         button.setForeground(textColor);
         button.setBorder(BorderFactory.createLineBorder(buttonBorder,1));
+        button.setOpaque(true);
         return button;
     }
 
@@ -68,15 +66,7 @@ public class Main extends JFrame {
             System.out.println(buttonString);
             if (firstRender) {
                 JButton button = styleButton(buttonString);
-                button.addActionListener(l -> {
-                    System.out.println("Clicked");
-                    checkValidMove(buttons.indexOf(button));
-                });
-                if (buttonString.isEmpty()){
-                    button.setOpaque(true);
-                    button.setContentAreaFilled(false);
-                    button.setBorderPainted(false);
-                }
+                button.addActionListener(_ -> checkValidMove(buttons.indexOf(button)));
                 gamePanel.add(button);
                 buttons.add(button);
             } else {
@@ -87,11 +77,24 @@ public class Main extends JFrame {
         firstRender = false;
     }
 
+    void repaintEmptySlot() {
+        for (int i = 0; i < 16; i++) {
+            if (buttons.get(i).getText().isEmpty()) {
+                buttons.get(i).setContentAreaFilled(false);
+                buttons.get(i).setBorderPainted(false);
+            } else {
+                buttons.get(i).setContentAreaFilled(true);
+                buttons.get(i).setBorderPainted(true);
+            }
+        }
+    }
+
     void checkValidMove(int index){
         int verticalRow = index % 4;
         int horizontalRow = index - (index % 4);
         int zeroIndex = -1;
         boolean vertical = false;
+
         for (int i = verticalRow; i < 16; i += 4){
             if (i == index) continue;
             if (buttons.get(i).getText().isEmpty()){
@@ -110,26 +113,11 @@ public class Main extends JFrame {
         }
         if (zeroIndex != -1){
             moveBricks(index, zeroIndex, vertical);
-            repaintEmptySlot();
-        }
-    }
-
-    void repaintEmptySlot() {
-        for (int i = 0; i < 16; i++) {
-            if (buttons.get(i).getText().isEmpty()) {
-                buttons.get(i).setOpaque(true);
-                buttons.get(i).setContentAreaFilled(false);
-                buttons.get(i).setBorderPainted(false);
-            } else {
-                buttons.get(i).setOpaque(true);
-                buttons.get(i).setContentAreaFilled(true);
-                buttons.get(i).setBorderPainted(true);
-            }
         }
     }
 
     void moveBricks(int chosenBrick, int targetBrick, boolean vertical){
-        int howManyJumps = -1;
+        int howManyJumps;
         if (vertical){
             howManyJumps = (targetBrick - chosenBrick) / 4;
             if (howManyJumps > 0){
@@ -155,8 +143,8 @@ public class Main extends JFrame {
                 }
             }
         }
-        hasWon = hasPlayerWon();
-        if (hasWon) {
+        repaintEmptySlot();
+        if (hasPlayerWon()) {
             showWinningMessage();
         }
     }
@@ -169,7 +157,6 @@ public class Main extends JFrame {
     }
 
     void newGame() {
-        hasWon = false;
         buttonStrings.clear();
         for (int i = 0; i <= 15; i++) {
             if (i == 0) {
