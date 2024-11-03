@@ -63,7 +63,6 @@ public class Main extends JFrame {
     void render() {
         int i = 0;
         for (String buttonString : buttonStrings) {
-            System.out.println(buttonString);
             if (firstRender) {
                 JButton button = styleButton(buttonString);
                 button.addActionListener(_ -> checkValidMove(buttons.indexOf(button)));
@@ -165,9 +164,45 @@ public class Main extends JFrame {
                 buttonStrings.add(String.valueOf(i));
             }
         }
-        Collections.shuffle(buttonStrings);
-        render();
-        repaintEmptySlot();
+        do{
+            Collections.shuffle(buttonStrings);
+            render();
+            repaintEmptySlot();
+        } while (!checkValidGame());
+    }
+
+    // The idea behind checkValidGame comes from https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+    boolean checkValidGame(){
+        return (isBlankEvenRowCountingFromBottom() && countInversions() % 2 == 1) || (!isBlankEvenRowCountingFromBottom() && countInversions() % 2 == 0);
+    }
+
+    boolean isBlankEvenRowCountingFromBottom(){
+        for (int i = 0; i < 16; i++) {
+            if (buttons.get(i).getText().isEmpty()) {
+                return (i / 4) % 2 == 0;
+            }
+        }
+        return false;
+    }
+
+    int countInversions(){
+        int inversions = 0;
+        for (int i = 0; i < 15; i++) {
+            if (buttons.get(i).getText().isEmpty()) {
+                continue;
+            }
+            int currentNumber = Integer.parseInt(buttons.get(i).getText());
+            for (int j = i + 1; j < 16; j++) {
+                if (buttons.get(j).getText().isEmpty()) {
+                    continue;
+                }
+                int nextNumber = Integer.parseInt(buttons.get(j).getText());
+                if (currentNumber > nextNumber){
+                    inversions++;
+                }
+            }
+        }
+        return inversions;
     }
 
     public static void main(String[] args) {
